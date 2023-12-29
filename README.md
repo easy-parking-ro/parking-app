@@ -1,30 +1,17 @@
-# React + TypeScript + Vite
+# Easy Parking App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The app is using [Supabase](https://supabase.com/) as its cloud and infrastructure.
 
-Currently, two official plugins are available:
+## Getting started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In order to run the app locally, you need to do the following:
 
-## Expanding the ESLint configuration
+- have Docker installed: `brew install --cask docker`
+- install the Supabase CLI
+  - `brew install supabase/tap/supabase` - recommended way for macOS users
+  - `npm i supabase --save-dev` - as a dev dependency
+- login to the Supabase CLI: `supabase login`
+- create a `.env` file at the root of the project that has the same shape as the `.env.example` file. The Supabase api url and the anon key will be available after starting the app. For the Google and Facebook client ids ask around in the team.
+- run `supabase start` - this will pull in all the required Docker images and start all the required docker containers. After everything has been installed a list of URLs and API keys will be provided. Use these to access the local resources.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+For a more thorough walkthrough of starting Supabase locally access [this](https://supabase.com/docs/guides/cli/local-development) link.
