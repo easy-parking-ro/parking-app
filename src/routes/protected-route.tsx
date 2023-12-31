@@ -12,6 +12,7 @@ export const ProtectedRoute = () => {
       <VStack
         h="100vh"
         alignItems="stretch"
+        overflow="hidden"
         bgGradient="linear(to-tr, purple.200, pink.300, red.200)"
       >
         <HStack
@@ -33,7 +34,7 @@ export const ProtectedRoute = () => {
           </HStack>
         </HStack>
 
-        <VStack alignItems="stretch" spacing={4} mx={16} my={8}>
+        <VStack alignItems="stretch" spacing={4} px={16} py={8} overflow="auto">
           <Outlet />
         </VStack>
       </VStack>

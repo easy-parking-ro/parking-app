@@ -1,14 +1,16 @@
-import { TABLES } from "../../../lib/tables";
 import { supabase } from "../../../lib/supabase";
+import { Tables } from "../../schema";
+
+type ParkingLot = Tables<"parking-lots">;
 
 export const parkingLotsQueryKeys = {
   all: () => ["parking-lots"],
 };
 
 export class ParkingService {
-  getParkingLots() {
+  async getParkingLots(): Promise<ParkingLot[]> {
     return supabase
-      .from(TABLES.parkingLots)
+      .from("parking-lots")
       .select("*")
       .then((r) => r.data ?? []);
   }

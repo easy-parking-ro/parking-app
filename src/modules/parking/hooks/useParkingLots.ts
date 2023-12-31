@@ -1,14 +1,18 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 
 import { ParkingService, parkingLotsQueryKeys } from "../parking.service";
+import { Tables } from "../../../schema";
 
-export const useParkingLots = () => {
+type ParkingLot = Tables<"parking-lots">;
+
+export const useParkingLots = <T = ParkingLot[]>(
+  options?: UseQueryOptions<ParkingLot[], Error, T>
+) => {
   const parkingService = new ParkingService();
 
-  const query = useQuery<any, any, any>({
+  return useQuery({
     queryKey: parkingLotsQueryKeys.all(),
     queryFn: () => parkingService.getParkingLots(),
+    ...options,
   });
-
-  return query;
 };
