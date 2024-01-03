@@ -1,10 +1,12 @@
 import { SimpleGrid, Card, Text, Image, HStack } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
-import { useParkingLots } from "./hooks";
-import { getBucketURL } from "../../utils";
+import { useParkingLots } from "../hooks";
+import { getBucketURL } from "../../../utils";
 
 export const ParkingLots = () => {
   const { data: parkingLots = [] } = useParkingLots();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -18,6 +20,7 @@ export const ParkingLots = () => {
               cursor="pointer"
               key={parkingLot.id}
               _hover={{ bg: "gray.100" }}
+              onClick={() => navigate(`/parking-lot/${parkingLot.id}`)}
             >
               {parkingLot.logo && (
                 <Image

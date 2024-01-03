@@ -17,8 +17,8 @@ export const ProtectedRoute = () => {
       >
         <HStack
           py={4}
-          px={16}
           as={Card}
+          px={[4, 16]}
           borderRadius={0}
           justifyContent="space-between"
         >
@@ -34,7 +34,13 @@ export const ProtectedRoute = () => {
           </HStack>
         </HStack>
 
-        <VStack alignItems="stretch" spacing={4} px={16} py={8} overflow="auto">
+        <VStack
+          py={8}
+          spacing={4}
+          px={[4, 16]}
+          overflow="auto"
+          alignItems="stretch"
+        >
           <Outlet />
         </VStack>
       </VStack>

@@ -55,6 +55,48 @@ export interface Database {
         }
         Relationships: []
       }
+      "parking-tickets": {
+        Row: {
+          created_at: string
+          id: number
+          parkingLotId: string
+          plate: string | null
+          status: string | null
+          userId: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          parkingLotId: string
+          plate?: string | null
+          status?: string | null
+          userId?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          parkingLotId?: string
+          plate?: string | null
+          status?: string | null
+          userId?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "parking-tickets_parkingLotId_fkey"
+            columns: ["parkingLotId"]
+            isOneToOne: false
+            referencedRelation: "parking-lots"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "parking-tickets_userId_fkey"
+            columns: ["userId"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
     }
     Views: {
       [_ in never]: never
