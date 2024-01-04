@@ -5,12 +5,9 @@ import { useParkingTicket } from "../hooks";
 
 export const ParkingTicket = () => {
   const { parkingTicketId } = useParams<{ parkingTicketId: string }>();
-
   const { data: parkingTicket, error } = useParkingTicket(
     parkingTicketId ?? ""
   );
-
-  console.log(parkingTicket);
 
   if (error) {
     return (
