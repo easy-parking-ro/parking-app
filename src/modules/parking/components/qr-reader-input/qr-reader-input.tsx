@@ -20,8 +20,8 @@ export const QrReaderInput = () => {
   }, [inputValue]);
 
   return (
-    <VStack justifyContent="center" height="calc(100vh - 100px)">
-      <Icon as={FaBarcode} boxSize={24} />
+    <VStack justifyContent="center" mt={16}>
+      <Icon as={FaBarcode} boxSize={24} color="white" />
       <Input
         display="block"
         marginY={1}
@@ -35,7 +35,7 @@ export const QrReaderInput = () => {
         letterSpacing={gap}
         _focus={{
           outline: "none",
-          color: "black",
+          color: "white",
         }}
         _focusVisible={{ outline: "none" }}
         onChange={(e) => setInputValue(e.target.value)}

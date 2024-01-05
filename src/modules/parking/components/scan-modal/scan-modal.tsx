@@ -26,7 +26,7 @@ export const ScanModal: React.FC<Props> = ({ textButton }) => {
     <>
       <Button onClick={onOpen}>{textButton}</Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="full">
-        <ModalContent bgGradient="linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%)">
+        <ModalContent bg="black">
           <VStack spacing={4} alignItems="stretch">
             <ModalHeader mt={6}>
               <HStack>
