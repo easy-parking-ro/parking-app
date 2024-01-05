@@ -47,7 +47,7 @@ export const ScanModal: React.FC<Props> = ({ textButton }) => {
               </HStack>
             </ModalHeader>
           </VStack>
-          <ModalCloseButton />
+          <ModalCloseButton color="white" />
           <ModalBody p={0}>
             {view === "Camera" ? <QrReaderCamera /> : <QrReaderInput />}
           </ModalBody>

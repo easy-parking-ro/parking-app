@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const charWidth = "1ch";
 const gap = "0.5ch";
-const maxLength = 7;
+const maxLength = 1;
 const inputWidth = `calc(${maxLength} * (${charWidth} + ${gap}))`;
 
 export const QrReaderInput = () => {
