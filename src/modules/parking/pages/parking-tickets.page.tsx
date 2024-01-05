@@ -9,25 +9,14 @@ import {
 
 import { useNavigate, useParams } from "react-router-dom";
 
-import { useParkingTickets, useQrRead } from "../hooks";
+import { useParkingTickets } from "../hooks";
 import { getBucketURL } from "../../../utils";
-import { useEffect } from "react";
-import { QrReader } from "../components";
+import { ScanModal } from "../components";
 
 export const ParkingTickets = () => {
   const { parkingLotId } = useParams();
   const navigate = useNavigate();
-  const { qrRef, result } = useQrRead();
-
   const { data } = useParkingTickets(parkingLotId ?? "");
-
-  useEffect(() => {
-    if (result) {
-      const elements = result.split("/");
-      const tResult = elements[elements.length - 1];
-      navigate(`/parking-ticket/${tResult}`);
-    }
-  }, [result]);
 
   if (!data) {
     return (
@@ -73,7 +62,7 @@ export const ParkingTickets = () => {
         })}
       </SimpleGrid>
 
-      <QrReader qrRef={qrRef} />
+      <ScanModal textButton="Scan ticket" />
     </VStack>
   );
 };

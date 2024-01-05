@@ -1,1 +1,3 @@
-export * from "./qr-reader/qr-reader";
+export * from "./qr-reader-camera/qr-reader-camera";
+export * from "./qr-reader-input/qr-reader-input";
+export * from "./modal/modal";
