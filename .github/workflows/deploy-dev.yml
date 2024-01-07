@@ -9,6 +9,7 @@ jobs:
       PROJECT_ID: qvxfqvelwftasitvnega
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+
       SUPABASE_AUTH_GOOGLE_CLIENT_ID: ${{ secrets.SUPABASE_AUTH_GOOGLE_CLIENT_ID }}
       SUPABASE_AUTH_GOOGLE_SECRET: ${{ secrets.SUPABASE_AUTH_GOOGLE_SECRET }}
       SUPABASE_AUTH_FACEBOOK_CLIENT_ID: ${{ secrets.SUPABASE_AUTH_FACEBOOK_CLIENT_ID }}
@@ -16,8 +17,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - uses: supabase/setup-cli@v1
         with:
           version: latest
-      - run: supabase migration up
+
+      - run: supabase link --project-ref $PROJECT_ID
+
       - run: supabase db push
