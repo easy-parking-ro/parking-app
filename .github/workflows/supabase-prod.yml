@@ -7,7 +7,7 @@ on:
 jobs:
   deploy-supabase:
     runs-on: ubuntu-latest
-    environment: dev
+    environment: prod
 
     env:
       SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
