@@ -34,7 +34,7 @@ export class ParkingService {
       .eq("id", parkingLotId)
       .limit(1)
       .single()
-      .then((r) => r.data ?? []);
+      .then((r) => r.data ?? []) as any;
   }
 
   getParkingTicket(parkingTicketId: string): Promise<ParkingTicket> {
@@ -43,6 +43,6 @@ export class ParkingService {
       .select("*")
       .eq("id", parkingTicketId)
       .single()
-      .then((r) => r.data);
+      .then((r) => r.data) as any;
   }
 }
