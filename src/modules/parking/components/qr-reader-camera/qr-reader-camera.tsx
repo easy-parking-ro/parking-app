@@ -1,25 +1,36 @@
 import { Stack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import { useZxing } from "react-zxing";
 import { useNavigate } from "react-router-dom";
+import { ParkingService } from "../..";
+import { useMutation } from "@tanstack/react-query";
+
+import { useToast } from "@chakra-ui/react";
 
 export const QrReaderCamera = () => {
-  const [result, setResult] = useState<string>("");
+  const service = new ParkingService();
+
+  const toast = useToast({
+    position: "bottom-right",
+    duration: 3000,
+    isClosable: true,
+  });
+
+  const getTicketMutation = useMutation({
+    mutationFn: (ticketId: string) => service.getParkingTicket(ticketId),
+    onSuccess: (ticket) => {
+      navigate(`/parking-ticket/${ticket.id}`);
+    },
+    onError: () => toast({ title: "Eroarea", status: "error" }),
+  });
 
   const navigate = useNavigate();
   const { ref } = useZxing({
     onDecodeResult(result) {
-      setResult(result.getText());
+      const elements = result.getText().split("/");
+      const id = elements[elements.length - 1];
+      getTicketMutation.mutate(id);
     },
   });
-
-  useEffect(() => {
-    if (result) {
-      const elements = result.split("/");
-      const tResult = elements[elements.length - 1];
-      navigate(`/parking-ticket/${tResult}`);
-    }
-  }, [result]);
 
   return (
     <Stack position="relative">

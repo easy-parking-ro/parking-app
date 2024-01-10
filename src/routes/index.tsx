@@ -4,7 +4,7 @@ import { ProtectedRoute } from "./protected-route";
 
 import { AuthPage } from "../modules/auth";
 import { ParkingLots, ParkingTickets, ParkingTicket } from "../modules/parking";
-
+import { Layout } from "../components";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +22,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/parking-ticket/:parkingTicketId",
-    element: <ParkingTicket />,
+    element: (
+      <Layout>
+        <ParkingTicket />
+      </Layout>
+    ),
   },
   {
     path: "/login",

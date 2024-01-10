@@ -9,6 +9,27 @@ export const ParkingTicket = () => {
     parkingTicketId ?? ""
   );
 
+  const handleTime = () => {
+    const givenDate = new Date(`${parkingTicket?.created_at}`);
+
+    const currentDate = new Date();
+    const timeDifference = currentDate.getTime() - givenDate.getTime();
+    const minutesDifference = timeDifference / (1000 * 60);
+    const hours = Math.floor(minutesDifference / 60);
+    const remainingMinutes = Math.round(minutesDifference % 60);
+    const text = `${hours} hours ${remainingMinutes} minutes`;
+
+    return text;
+  };
+
+  const givenDate = new Date(`${parkingTicket?.created_at}`);
+
+  const formattedDate = givenDate.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit",
+  });
+
   if (error) {
     return (
       <VStack>
@@ -19,9 +40,10 @@ export const ParkingTicket = () => {
 
   return (
     <VStack>
-      <Text>{parkingTicket?.id}</Text>
+      <Text>{formattedDate}</Text>
       <Text>{parkingTicket?.plate}</Text>
       <Text>{parkingTicket?.status}</Text>
+      <Text>{handleTime()}</Text>
     </VStack>
   );
 };
