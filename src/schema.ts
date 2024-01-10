@@ -34,7 +34,7 @@ export interface Database {
   }
   public: {
     Tables: {
-      "parking-lots": {
+      parkingLots: {
         Row: {
           created_at: string
           id: string
@@ -55,44 +55,37 @@ export interface Database {
         }
         Relationships: []
       }
-      "parking-tickets": {
+      parkingTickets: {
         Row: {
           created_at: string
-          id: number
+          id: string
           parkingLotId: string
           plate: string | null
-          status: string | null
+          status: string
           userId: string | null
         }
         Insert: {
           created_at?: string
-          id?: number
+          id?: string
           parkingLotId: string
           plate?: string | null
-          status?: string | null
+          status?: string
           userId?: string | null
         }
         Update: {
           created_at?: string
-          id?: number
+          id?: string
           parkingLotId?: string
           plate?: string | null
-          status?: string | null
+          status?: string
           userId?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "parking-tickets_parkingLotId_fkey"
-            columns: ["parkingLotId"]
-            isOneToOne: false
-            referencedRelation: "parking-lots"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "parking-tickets_userId_fkey"
+            foreignKeyName: "parkingTickets_userId_fkey"
             columns: ["userId"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "parkingLots"
             referencedColumns: ["id"]
           }
         ]

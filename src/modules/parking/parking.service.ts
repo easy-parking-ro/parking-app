@@ -1,8 +1,8 @@
 import { supabase } from "../../../lib/supabase";
 import { Tables } from "../../schema";
 
-type ParkingLot = Tables<"parking-lots">;
-type ParkingTicket = Tables<"parking-tickets">;
+type ParkingLot = Tables<"parkingLots">;
+type ParkingTicket = Tables<"parkingTickets">;
 
 export const parkingLotsQueryKeys = {
   all: () => ["parking-lots"],
@@ -14,13 +14,13 @@ export const parkingLotsQueryKeys = {
 };
 
 interface ParkingLotWithTickets extends ParkingLot {
-  "parking-tickets": ParkingTicket[];
+  parkingTickets: ParkingTicket[];
 }
 
 export class ParkingService {
   async getParkingLots(): Promise<ParkingLot[]> {
     return supabase
-      .from("parking-lots")
+      .from("parkingLots")
       .select("*")
       .then((r) => r.data ?? []);
   }
@@ -29,8 +29,8 @@ export class ParkingService {
     parkingLotId: string
   ): Promise<ParkingLotWithTickets> {
     return supabase
-      .from("parking-lots")
-      .select(`*, parking-tickets (*)`)
+      .from("parkingLots")
+      .select(`*, parkingTickets (*)`)
       .eq("id", parkingLotId)
       .limit(1)
       .single()
@@ -39,7 +39,7 @@ export class ParkingService {
 
   getParkingTicket(parkingTicketId: string): Promise<ParkingTicket> {
     return supabase
-      .from("parking-tickets")
+      .from("parkingTickets")
       .select("*")
       .eq("id", parkingTicketId)
       .single()
