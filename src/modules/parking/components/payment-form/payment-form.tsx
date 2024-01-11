@@ -5,8 +5,11 @@ import {
   Grid,
   GridItem,
   Text,
+  InputRightElement,
   HStack,
+  InputGroup,
 } from "@chakra-ui/react";
+import { FaRegCreditCard } from "react-icons/fa6";
 
 export const PaymentForm = () => {
   const formatCardNumber = (value: string) => {
@@ -49,26 +52,32 @@ export const PaymentForm = () => {
         <Text fontWeight={500}>Enter payment details</Text>
       </HStack>
       <FormControl mb={4}>
-        <Input
-          type="text"
-          placeholder="Card number"
-          maxLength={19}
-          onChange={handleCardNumberChange}
-          border="0"
-          borderBottom="1px solid"
-          borderBottomColor="black"
-          borderRadius="0"
-          outline="0"
-          color="black"
-          py="2"
-          px="0"
-          _focusVisible={{
-            border: "black",
-            boxShadow: "none ",
-            borderBottom: "2px solid black",
-          }}
-          _placeholder={{ color: "black.100" }}
-        />
+        <InputGroup>
+          <InputRightElement pointerEvents="none" fontSize="2rem" mr="4">
+            <FaRegCreditCard />
+          </InputRightElement>
+          <Input
+            type="text"
+            placeholder="Card number"
+            maxLength={19}
+            onChange={handleCardNumberChange}
+            border="0"
+            borderBottom="1px solid"
+            borderBottomColor="black"
+            borderRadius="0"
+            outline="0"
+            color="black"
+            py="2"
+            px="0"
+            fontSize="20px"
+            _focusVisible={{
+              border: "black",
+              boxShadow: "none ",
+              borderBottom: "2px solid black",
+            }}
+            _placeholder={{ color: "black.100", fontSize: "1rem" }}
+          />
+        </InputGroup>
       </FormControl>
 
       <Grid templateColumns="repeat(3, 1fr)" gap={4}>
@@ -87,12 +96,13 @@ export const PaymentForm = () => {
               color="black"
               py="2"
               px="0"
+              fontSize="20px"
               _focusVisible={{
                 border: "black",
                 boxShadow: "none ",
                 borderBottom: "2px solid black",
               }}
-              _placeholder={{ color: "black.100" }}
+              _placeholder={{ color: "black.100", fontSize: "1rem" }}
             />
           </FormControl>
         </GridItem>
@@ -113,12 +123,13 @@ export const PaymentForm = () => {
               color="black"
               py="2"
               px="0"
+              fontSize="20px"
               _focusVisible={{
                 border: "black",
                 boxShadow: "none ",
                 borderBottom: "2px solid black",
               }}
-              _placeholder={{ color: "black.100" }}
+              _placeholder={{ color: "black.100", fontSize: "1rem" }}
             />
           </FormControl>
         </GridItem>
@@ -137,12 +148,13 @@ export const PaymentForm = () => {
           color="black"
           py="2"
           px="0"
+          fontSize="20px"
           _focusVisible={{
             border: "black",
             boxShadow: "none ",
             borderBottom: "2px solid black",
           }}
-          _placeholder={{ color: "black.100" }}
+          _placeholder={{ color: "black.100", fontSize: "1rem" }}
         />
       </FormControl>
     </Box>
