@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   VStack,
   Text,
@@ -8,18 +8,27 @@ import {
   Icon,
   Button,
   HStack,
+  Spinner,
+  Flex,
 } from "@chakra-ui/react";
 import { FaApplePay } from "react-icons/fa6";
 import { PaymentForm } from "../components";
 import { useParkingTicket } from "../hooks";
+import { useState } from "react";
+import { FaCheck } from "react-icons/fa";
 
 const rate = 5;
 
 export const ParkingTicket = () => {
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
+
   const { parkingTicketId } = useParams<{ parkingTicketId: string }>();
   const { data: parkingTicket, error } = useParkingTicket(
     parkingTicketId ?? ""
   );
+  const navigate = useNavigate();
+
   const givenDate = new Date(`${parkingTicket?.created_at}`);
 
   const currentDate = new Date();
@@ -38,11 +47,53 @@ export const ParkingTicket = () => {
 
   const amount = rate * totalHours;
 
+  const handlePayment = () => {
+    setLoading(true);
+
+    setTimeout(() => {
+      navigate("/");
+    }, 2500);
+
+    setTimeout(() => {
+      setLoading(false);
+      setStatus("Success");
+    }, 1500);
+  };
+
   if (error) {
     return (
       <VStack>
         <Code>{JSON.stringify(error.message, null, 2)}</Code>
       </VStack>
+    );
+  }
+
+  if (loading) {
+    return (
+      <Flex height="100vh" justifyContent="center" alignItems="center">
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="black"
+          width="5rem"
+          height="5rem"
+        />
+      </Flex>
+    );
+  }
+
+  if (status === "Success") {
+    return (
+      <Flex
+        height="100vh"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection={"column"}
+      >
+        <Icon as={FaCheck} color="#4CAF50" width={24} height={24} />
+        <Text fontWeight={500}>Success Payment</Text>
+      </Flex>
     );
   }
 
@@ -80,10 +131,10 @@ export const ParkingTicket = () => {
       >
         <PaymentForm />
       </Box>
-      <Button width="100%" mb="2">
+      <Button width="100%" mb="2" onClick={handlePayment}>
         Proceed with payment
       </Button>
-      <Button bgColor="black" width="100%">
+      <Button bgColor="black" width="100%" onClick={handlePayment}>
         <Icon as={FaApplePay} color="white" width={12} height={8} />
       </Button>
     </Stack>
