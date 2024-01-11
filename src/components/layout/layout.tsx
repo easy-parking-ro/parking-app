@@ -14,7 +14,8 @@ export const Layout: React.FC<LayoutProps> = ({
       h="100vh"
       alignItems="stretch"
       overflow="hidden"
-      bgGradient="linear(to-tr, purple.200, pink.300, red.200)"
+      // bgGradient="linear(to-tr, purple.200, pink.300, red.200)"
+      bgColor={"white"}
     >
       <HStack
         py={4}
