@@ -24,7 +24,9 @@ export const ScanModal: React.FC<Props> = ({ textButton }) => {
 
   return (
     <>
-      <Button onClick={onOpen}>{textButton}</Button>
+      <Button onClick={onOpen} bgColor="black" color="white">
+        {textButton}
+      </Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="full">
         <ModalContent bg="black">
           <VStack spacing={4} alignItems="stretch">
@@ -42,7 +44,7 @@ export const ScanModal: React.FC<Props> = ({ textButton }) => {
                   flex={1}
                   leftIcon={<FaKeyboard />}
                 >
-                  Tastatura
+                  Keyboard
                 </Button>
               </HStack>
             </ModalHeader>

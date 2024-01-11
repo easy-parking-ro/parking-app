@@ -6,7 +6,6 @@ import {
   GridItem,
   Text,
   HStack,
-  Button,
 } from "@chakra-ui/react";
 
 export const PaymentForm = () => {
@@ -46,17 +45,8 @@ export const PaymentForm = () => {
 
   return (
     <Box>
-      <HStack justifyContent={"space-between"} alignItems={"center"} mb="4">
+      <HStack justifyContent={"space-between"} alignItems={"center"} mb={4}>
         <Text fontWeight={500}>Enter payment details</Text>
-        <Button
-          colorScheme="teal"
-          variant="link"
-          color="gray.300"
-          textDecoration="underline"
-          _active={{ color: "gray.300" }}
-        >
-          Cancel
-        </Button>
       </HStack>
       <FormControl mb={4}>
         <Input

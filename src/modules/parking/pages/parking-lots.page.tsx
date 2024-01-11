@@ -10,7 +10,16 @@ export const ParkingLots = () => {
 
   return (
     <>
-      <SimpleGrid columns={4} gap={6}>
+      <Text
+        width="100%"
+        textAlign="center"
+        mb="4"
+        fontSize="24"
+        fontWeight="700"
+      >
+        Parking Spaces
+      </Text>
+      <SimpleGrid columns={[1, 1, 2, 3]} gap={4}>
         {parkingLots.map((parkingLot) => {
           return (
             <HStack
@@ -19,6 +28,7 @@ export const ParkingLots = () => {
               spacing={6}
               cursor="pointer"
               key={parkingLot.id}
+              border="1px solid black"
               _hover={{ bg: "gray.100" }}
               onClick={() => navigate(`/parking-lot/${parkingLot.id}`)}
             >
@@ -29,7 +39,12 @@ export const ParkingLots = () => {
                   src={getBucketURL(parkingLot.logo)}
                 />
               )}
-              <Text fontSize={20} fontWeight={700}>
+              <Text
+                fontSize={16}
+                fontWeight={500}
+                width="100%"
+                textAlign="center"
+              >
                 {parkingLot.name}
               </Text>
             </HStack>

@@ -22,7 +22,13 @@ export const ParkingTickets = () => {
   return (
     <VStack alignItems="stretch">
       <HStack>
-        <Text fontWeight={700} fontSize={24}>
+        <Text
+          fontWeight={700}
+          fontSize={24}
+          mb={4}
+          width="100%"
+          textAlign="center"
+        >
           {data.name}
         </Text>
         {data.logo && (

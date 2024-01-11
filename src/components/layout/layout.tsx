@@ -10,13 +10,7 @@ export const Layout: React.FC<LayoutProps> = ({
   children,
 }) => {
   return (
-    <VStack
-      h="100vh"
-      alignItems="stretch"
-      overflow="hidden"
-      // bgGradient="linear(to-tr, purple.200, pink.300, red.200)"
-      bgColor={"white"}
-    >
+    <VStack h="100vh" alignItems="stretch" overflow="hidden" bgColor={"white"}>
       <HStack
         py={4}
         as={Card}
