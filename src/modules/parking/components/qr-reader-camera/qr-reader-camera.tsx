@@ -20,7 +20,7 @@ export const QrReaderCamera = () => {
     onSuccess: (ticket) => {
       navigate(`/parking-ticket/${ticket.id}`);
     },
-    onError: () => toast({ title: "Eroarea", status: "error" }),
+    onError: () => toast({ title: "Error", status: "error" }),
   });
 
   const navigate = useNavigate();
