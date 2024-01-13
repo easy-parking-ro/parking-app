@@ -1,4 +1,4 @@
-import { BrowserView, MobileView } from "react-device-detect";
+import { MobileView } from "react-device-detect";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   VStack,

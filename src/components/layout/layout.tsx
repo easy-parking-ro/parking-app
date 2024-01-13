@@ -1,4 +1,5 @@
 import { VStack, HStack, Text, Card } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 interface LayoutProps {
   layoutHeaderElement?: React.ReactNode;
@@ -9,6 +10,8 @@ export const Layout: React.FC<LayoutProps> = ({
   layoutHeaderElement,
   children,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <VStack h="100vh" alignItems="stretch" overflow="hidden" bgColor={"white"}>
       <HStack
@@ -18,8 +21,13 @@ export const Layout: React.FC<LayoutProps> = ({
         borderRadius={0}
         justifyContent="space-between"
       >
-        <Text fontSize={24} fontWeight={600}>
-          Easy Parking App
+        <Text
+          fontSize={24}
+          fontWeight={600}
+          cursor="pointer"
+          onClick={() => navigate("/")}
+        >
+          Easy Parking
         </Text>
 
         {layoutHeaderElement}
