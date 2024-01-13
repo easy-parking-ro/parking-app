@@ -138,7 +138,7 @@ export const ParkingTicket = () => {
       <Button width="100%" mb="2" onClick={handlePayment}>
         Proceed with payment
       </Button>
-      <BrowserView>
+      <MobileView>
         {isIOS ? (
           <Button bgColor="black" width="100%" onClick={handlePayment}>
             <Icon as={FaApplePay} color="white" width={12} height={8} />
@@ -148,7 +148,7 @@ export const ParkingTicket = () => {
             <Icon as={FaGooglePay} color="white" width={12} height={8} />
           </Button>
         )}
-      </BrowserView>
+      </MobileView>
     </Stack>
   );
 };
