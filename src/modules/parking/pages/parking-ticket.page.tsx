@@ -1,3 +1,4 @@
+import { BrowserView, MobileView } from "react-device-detect";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   VStack,
@@ -12,16 +13,19 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { FaApplePay } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa";
+import { FaGooglePay } from "react-icons/fa6";
 import { PaymentForm } from "../components";
 import { useParkingTicket } from "../hooks";
 import { useState } from "react";
-import { FaCheck } from "react-icons/fa";
 
 const rate = 5;
 
 export const ParkingTicket = () => {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
+
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   const { parkingTicketId } = useParams<{ parkingTicketId: string }>();
   const { data: parkingTicket, error } = useParkingTicket(
@@ -134,9 +138,17 @@ export const ParkingTicket = () => {
       <Button width="100%" mb="2" onClick={handlePayment}>
         Proceed with payment
       </Button>
-      <Button bgColor="black" width="100%" onClick={handlePayment}>
-        <Icon as={FaApplePay} color="white" width={12} height={8} />
-      </Button>
+      <BrowserView>
+        {isIOS ? (
+          <Button bgColor="black" width="100%" onClick={handlePayment}>
+            <Icon as={FaApplePay} color="white" width={12} height={8} />
+          </Button>
+        ) : (
+          <Button bgColor="black" width="100%" onClick={handlePayment}>
+            <Icon as={FaGooglePay} color="white" width={12} height={8} />
+          </Button>
+        )}
+      </BrowserView>
     </Stack>
   );
 };
