@@ -51,6 +51,7 @@ export const PaymentForm = () => {
       <HStack justifyContent={"space-between"} alignItems={"center"} mb={4}>
         <Text fontWeight={500}>Enter payment details</Text>
       </HStack>
+
       <FormControl mb={4}>
         <InputGroup>
           <InputRightElement pointerEvents="none" fontSize="2rem" mr="4">
@@ -106,6 +107,7 @@ export const PaymentForm = () => {
             />
           </FormControl>
         </GridItem>
+
         <GridItem colSpan={1}>
           <FormControl mb={4}>
             <Input

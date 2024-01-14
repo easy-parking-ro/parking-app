@@ -1,11 +1,10 @@
-import { VStack, Icon, Input } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FaBarcode } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { ParkingService } from "../..";
 import { useMutation } from "@tanstack/react-query";
+import { VStack, Icon, Input, useToast } from "@chakra-ui/react";
 
-import { useToast } from "@chakra-ui/react";
+import { ParkingService } from "../";
 
 const charWidth = "0.7ch";
 const gap = "0.5ch";

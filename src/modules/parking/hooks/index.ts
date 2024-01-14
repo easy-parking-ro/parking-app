@@ -1,4 +1,5 @@
 export * from "./useParkingLots";
 export * from "./useParkingTicket";
 export * from "./useParkingTickets";
-export * from "./useQrRead";
+export * from "./useCameraScan";
+export * from "./useReadTicket";

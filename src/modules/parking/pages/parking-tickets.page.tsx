@@ -1,13 +1,20 @@
-import { Text, VStack, Image, HStack } from "@chakra-ui/react";
-
 import { useParams } from "react-router-dom";
+import {
+  Button,
+  Text,
+  VStack,
+  Image,
+  HStack,
+  useDisclosure,
+} from "@chakra-ui/react";
 
+import { ScanModal } from "../components";
 import { useParkingTickets } from "../hooks";
 import { getBucketURL } from "../../../utils";
-import { ScanModal } from "../components";
 
 export const ParkingTickets = () => {
   const { parkingLotId } = useParams();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { data } = useParkingTickets(parkingLotId ?? "");
 
@@ -20,28 +27,29 @@ export const ParkingTickets = () => {
   }
 
   return (
-    <VStack alignItems="stretch">
-      <HStack>
-        <Text
-          fontWeight={700}
-          fontSize={24}
-          mb={4}
-          width="100%"
-          textAlign="center"
-        >
-          {data.name}
-        </Text>
-        {data.logo && (
-          <Image
-            h={24}
-            w={24}
-            objectFit="contain"
-            src={getBucketURL(data.logo)}
-          />
-        )}
-      </HStack>
+    <>
+      <VStack alignItems="stretch">
+        <HStack>
+          {data.logo && (
+            <Image
+              h={24}
+              w={24}
+              objectFit="contain"
+              src={getBucketURL(data.logo)}
+            />
+          )}
 
-      <ScanModal textButton="Scan ticket" />
-    </VStack>
+          <Text mb={4} fontSize={24} fontWeight={700} textAlign="center">
+            {data.name}
+          </Text>
+        </HStack>
+
+        <Button onClick={onOpen} colorScheme="gray">
+          Scanati ticket
+        </Button>
+      </VStack>
+
+      <ScanModal isOpen={isOpen} onClose={onClose} />
+    </>
   );
 };

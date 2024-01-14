@@ -42,6 +42,7 @@ export class ParkingService {
       .from("parkingTickets")
       .select("*")
       .eq("id", parkingTicketId)
+      .limit(1)
       .single()
       .then((r) => r.data) as any;
   }
