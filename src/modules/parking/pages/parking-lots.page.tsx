@@ -1,36 +1,34 @@
-import { SimpleGrid, Card, Text, Image, HStack } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { FaAngleRight } from "react-icons/fa6";
+import { SimpleGrid, Card, Text, Image, Icon } from "@chakra-ui/react";
 
 import { useParkingLots } from "../hooks";
 import { getBucketURL } from "../../../utils";
 
 export const ParkingLots = () => {
   const { data: parkingLots = [] } = useParkingLots();
-  const navigate = useNavigate();
 
   return (
     <>
-      <Text
-        width="100%"
-        textAlign="center"
-        mb="4"
-        fontSize="24"
-        fontWeight="700"
-      >
-        Parking Spaces
+      <Text textAlign="center" fontSize={24} fontWeight={700}>
+        Locuri de parcare
       </Text>
+
       <SimpleGrid columns={[1, 1, 2, 3]} gap={4}>
         {parkingLots.map((parkingLot) => {
           return (
-            <HStack
+            <Card
               p={4}
-              as={Card}
-              spacing={6}
+              gap={6}
+              as={Link}
+              flexDir="row"
+              display="flex"
               cursor="pointer"
+              alignItems="center"
               key={parkingLot.id}
               border="1px solid black"
               _hover={{ bg: "gray.100" }}
-              onClick={() => navigate(`/parking-lot/${parkingLot.id}`)}
+              to={`/parking-lot/${parkingLot.id}`}
             >
               {parkingLot.logo && (
                 <Image
@@ -39,15 +37,13 @@ export const ParkingLots = () => {
                   src={getBucketURL(parkingLot.logo)}
                 />
               )}
-              <Text
-                fontSize={16}
-                fontWeight={500}
-                width="100%"
-                textAlign="center"
-              >
+
+              <Text flex={1} fontSize={24} fontWeight={500}>
                 {parkingLot.name}
               </Text>
-            </HStack>
+
+              <Icon as={FaAngleRight} boxSize={6} />
+            </Card>
           );
         })}
       </SimpleGrid>

@@ -1,65 +1,53 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaBarcode } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import { VStack, Icon, Input, useToast } from "@chakra-ui/react";
+import { Button, VStack, Icon, Input } from "@chakra-ui/react";
 
-import { ParkingService } from "../";
+import { useReadTicket } from "../hooks";
 
-const charWidth = "0.7ch";
 const gap = "0.5ch";
 const maxLength = 36;
+const charWidth = "0.7ch";
 const inputWidth = `calc(${maxLength} * (${charWidth} + ${gap}))`;
 
 export const QrReaderInput = () => {
+  const { onReadTicket, getTicketMutation } = useReadTicket();
   const [inputValue, setInputValue] = useState<string>("");
-  const navigate = useNavigate();
 
-  const service = new ParkingService();
-
-  const toast = useToast({
-    position: "bottom-right",
-    duration: 3000,
-    isClosable: true,
-  });
-
-  const getTicketMutation = useMutation({
-    mutationFn: (ticketId: string) => service.getParkingTicket(ticketId),
-    onSuccess: (ticket) => {
-      navigate(`/parking-ticket/${ticket.id}`);
-    },
-    onError: () => toast({ title: "Error", status: "error" }),
-  });
-
-  useEffect(() => {
-    if (inputValue.length === maxLength) {
-      getTicketMutation.mutate(inputValue);
-    }
-  }, [inputValue]);
+  const onSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    onReadTicket(inputValue);
+  };
 
   return (
-    <VStack justifyContent="center" mt={16}>
+    <VStack
+      flex={1}
+      as="form"
+      spacing={6}
+      bg="blackAlpha.800"
+      onSubmit={onSubmit}
+      justifyContent="center"
+    >
       <Icon as={FaBarcode} boxSize={24} color="white" />
       <Input
-        display="block"
-        marginY={1}
-        marginX="auto"
-        border="none"
-        p="0"
-        width={inputWidth}
-        background={`repeating-linear-gradient(90deg, dimgrey 0, dimgrey ${charWidth}, transparent 0, transparent calc(${charWidth} + ${gap})) 0 100%/${inputWidth} 2px no-repeat`}
-        fontFamily="droid sans mono, consolas, monospace"
-        fontSize="1.4ch"
-        letterSpacing={gap}
-        _focus={{
-          outline: "none",
-          color: "white",
-        }}
-        _focusVisible={{ outline: "none" }}
-        onChange={(e) => setInputValue(e.target.value)}
-        maxLength={maxLength}
         autoFocus
+        size="lg"
+        color="white"
+        textAlign="center"
+        variant="unstyled"
+        width={inputWidth}
+        letterSpacing={gap}
+        maxLength={maxLength}
+        fontFamily="droid sans mono, consolas, monospace"
+        background={`repeating-linear-gradient(90deg, dimgrey 0, dimgrey ${charWidth}, transparent 0, transparent calc(${charWidth} + ${gap})) 0 100%/${inputWidth} 2px no-repeat`}
+        onChange={(e) => setInputValue(e.target.value)}
+        _focus={{
+          outline: "black",
+        }}
       />
+
+      <Button isLoading={getTicketMutation.isPending} type="submit">
+        Cauta ticket
+      </Button>
     </VStack>
   );
 };

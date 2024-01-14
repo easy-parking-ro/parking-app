@@ -28,7 +28,7 @@ export const ParkingTickets = () => {
 
   return (
     <>
-      <VStack alignItems="stretch">
+      <VStack alignItems="stretch" spacing={8}>
         <HStack>
           {data.logo && (
             <Image
@@ -44,7 +44,12 @@ export const ParkingTickets = () => {
           </Text>
         </HStack>
 
-        <Button onClick={onOpen} colorScheme="gray">
+        <Button
+          size="lg"
+          onClick={onOpen}
+          alignSelf="center"
+          colorScheme="gray"
+        >
           Scanati ticket
         </Button>
       </VStack>

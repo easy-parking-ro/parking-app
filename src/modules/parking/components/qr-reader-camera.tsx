@@ -8,7 +8,7 @@ export const QrReaderCamera = () => {
   return (
     <>
       <Flex flex={1} bg="blackAlpha.800" />
-      <Flex as={"video"} ref={ref} maxHeight="50rem" bg="blackAlpha.800" />
+      <Flex as={"video"} ref={ref} maxHeight="46rem" bg="blackAlpha.800" />
       <Flex flex={1} bg="blackAlpha.800" />
     </>
   );

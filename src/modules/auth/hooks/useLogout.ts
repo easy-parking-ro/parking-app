@@ -14,9 +14,8 @@ export const useLogout = () => {
   const logoutMutation = useMutation({
     mutationFn: () => authService.signOut(),
     onSuccess: () => {
-      console.log("s-a facut cu success!");
       toast({
-        title: "Successfully logged out",
+        title: "Delogare cu success",
         status: "success",
       });
     },
